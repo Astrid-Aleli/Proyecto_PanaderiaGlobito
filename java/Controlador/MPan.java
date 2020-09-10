@@ -60,6 +60,38 @@ public class MPan {
     }
 
     public MPan eliminarPan() throws ClassNotFoundException{
+        try{
+            con = Conexion.getConexion();
+            String q = "select * from MPan";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                MPan pan = new MPan();
+                String sql="DELETE FROM MPan WHERE ID="+pan.getId();
+                lp.add(pan);
+            }
+        
+        }catch(SQLException e){
+            System.out.println("Error al eliminar pan");
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            lp = null;
+        
+        }finally{
+
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        
+        }
+        return lp;
     
     }
 
