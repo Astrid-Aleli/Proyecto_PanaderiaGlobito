@@ -60,7 +60,38 @@ public class MUsuario {
     }
 
     public MUsuario actualizarUsuario () throws ClassNotFoundException{
-    
+         try{
+            con = Conexion.getConexion();
+            String q = "select * from MUsuario";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                MUsuario usu = new MUsuario();
+                String sql="UPDATE PAN SET NPAN='"+usu.getNom_usu()+"', appat_usu='"+usu.getAppat_usu()+"', pass_usu='"+usu.getPass_usu()+"'" +" WHERE ID="+usu.getId_usu();
+                lp.add(usu);
+            }
+        
+        }catch(SQLException e){
+            System.out.println("Error al registrar usuario");
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            lp = null;
+        
+        }finally{
+
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        
+        }
+        return lp;
     }
 
     public Vector<MUsuario> listaUsuarios() throws ClassNotFoundException{
