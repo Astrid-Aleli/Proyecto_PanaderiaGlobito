@@ -1,11 +1,10 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
 <html>
     <head>
-    <title>Panaderia globito</title>
+    <title>Registro</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-widht, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/estilo.css">
@@ -34,15 +33,23 @@
     <section class="hide">
         
     </section>
-        <section class="iniciosesion" >
+        <section class="registrarUsuario" >
             <table width="800" border="0" aling="center" >
                 <tr>
-                    <td colspan="2" ><h2>Inicio de Sesion</h2></td>
+                    <td colspan="2" ><h2>Registrar usuario</h2></td>
                 </tr>
                 <tr>
                     <td>
-                <from method="post" name="formulario" action="VerificarUsuario" >
+                <from method="post" name="formulario" action="RegistrarUsuario" >
                     <table width="620" border="0" >
+                        <tr>
+                            <td>Nombre:</td>
+                            <td> <input type="text" name="nombre" id="nombre" > </td>        
+                        </tr>
+                        <tr>
+                            <td>Apellido paterno:</td>
+                            <td> <input type="password" name="appat" id="appat" > </td>        
+                        </tr>
                         <tr>
                             <td>Usuario:</td>
                             <td> <input type="text" name="user" id="user" > </td>        
@@ -52,7 +59,7 @@
                             <td> <input type="password" name="pass" id="pass" > </td>        
                         </tr>
                         <tr>
-                            <td><a href="registro.jsp" >Nueva Cuenta</a></td>
+                            <td><a href="inicio.jsp" >Ya tengo cuenta</a></td>
                             <td><input type="submit" value="Entrar" 
                                        name="inicio" ></td>
                         </tr>

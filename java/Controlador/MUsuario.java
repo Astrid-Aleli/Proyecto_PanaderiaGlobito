@@ -7,25 +7,70 @@ public class MUsuario {
     
     private int id_usu, priv_usu;
     private String nom_usu, appat_usu, user_usu, pass_usu;
-    
-    //crear el constructor
-    
+
     public MUsuario(){
     
     }
     
-    //metodo para agregar un nuevo usuario
+
+    public MUsuario agregarUsuario () throws ClassNotFoundException{
     
-    //metodo para eliminar un usuario
+    }
+
+    public MUsuario eliminarUsuario () throws ClassNotFoundException{
     
-    //metodo para actualizar un usuario
+    }
+
+    public MUsuario actualizarUsuario () throws ClassNotFoundException{
     
-    //metodo para consultar todos los usuarios
+    }
+
+    public Vector<MUsuario> listaUsuarios() throws ClassNotFoundException{
+        Vector<MUsuario> lp = new Vector<MUsuario>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try{
+            con = Conexion.getConexion();
+            String q = "select * from MUsuario";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                MUsuario usu = new MUsuario();
+                usu.setId_usu(rs.getInt("id_usu"));
+                usu.setPriv_usu(rs.getInt("priv_usu"));
+                usu.setNom_usu(rs.getString("nom_usu"));
+                usu.setAppat_usu(rs.getString("appat_usu"));
+                usu.setUser_usu(rs.getString("user_usu"));
+                usu.setPass_csp(rs.getString("pass_csp"));
+                lp.add(usu);
+            }
+        
+        }catch(SQLException e){
+            System.out.println("No encontro la tabla usuario");
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            lp = null;
+        
+        }finally{
+
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        
+        }
+        return lp;
+    }
     
     //metodo para buscar un usuario por id
-   
-    
-    //metodo para verificar al usuario
     
     public MUsuario verificarUsuario(String user, String pass) throws ClassNotFoundException{
         MUsuario u = null;
