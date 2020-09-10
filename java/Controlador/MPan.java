@@ -17,7 +17,46 @@ public class MPan {
     }
 
     public MPan agregarPan() throws ClassNotFoundException{
-    
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+         try{
+            con = Conexion.getConexion();
+            String q = "select * from MPan";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                MPan pan = new MPan();
+                pan.setId_pan(rs.getInt("id_pan")+1);
+                pan.setNom_pan(getString("nom_pan"));
+                pan.setPre_pan(getFloat("pre_pan"));
+                pan.setStock_pan(getInt("stock_pan"));
+                pan.setId_cpan(getInt("id_cpan"));
+                pan.setId_csp(getInt("id_csp"));
+                lp.add(pan);
+            }
+        
+        }catch(SQLException e){
+            System.out.println("Hubo un error al registrar el pan");
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            lp = null;
+        
+        }finally{
+
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        
+        }
+        return lp;
     }
 
     public MPan eliminarPan() throws ClassNotFoundException{
