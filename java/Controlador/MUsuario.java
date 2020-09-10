@@ -13,7 +13,45 @@ public class MUsuario {
     }
     
 
-    public MUsuario agregarUsuario () throws ClassNotFoundException{
+    public MUsuario agregarUsuario (String nom_usu,String appat_usu,String user_usu,String pass_usu) throws ClassNotFoundException{
+
+        try{
+            con = Conexion.getConexion();
+            String q = "select * from MUsuario";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                MUsuario usu = new MUsuario();
+                usu.setId_usu(rs.getInt("id_usu")+1);
+                usu.setPriv_usu(rs.getInt("priv_usu")+1);
+                usu.setNom_usu(getString("nombre"));
+                usu.setAppat_usu(getString("appat"));
+                usu.setUser_usu(getString("user"));
+                usu.setPass_csp(getString("pass"));
+                lp.add(usu);
+            }
+        
+        }catch(SQLException e){
+            System.out.println("Error al registrar usuario");
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            lp = null;
+        
+        }finally{
+
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        
+        }
+        return lp;
     
     }
 

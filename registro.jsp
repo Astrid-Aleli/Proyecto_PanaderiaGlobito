@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                     <td>
-                <from method="post" name="formulario" action="RegistrarUsuario" >
+                <from method="post" name="formulario" action="agregarUsuario()" >
                     <table width="620" border="0" >
                         <tr>
                             <td>Nombre:</td>
