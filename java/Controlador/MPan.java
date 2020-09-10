@@ -15,9 +15,19 @@ public class MPan {
     public MPan(){
     
     }
+
+    public MPan agregarPan() throws ClassNotFoundException{
     
-    //tarea
+    }
+
+    public MPan eliminarPan() throws ClassNotFoundException{
     
+    }
+
+    public MPan actualizarPan() throws ClassNotFoundException{
+    
+    }
+
     public Vector<MPan> listaPanes() throws ClassNotFoundException{
         Vector<MPan> lp = new Vector<MPan>();
         Connection con = null;
