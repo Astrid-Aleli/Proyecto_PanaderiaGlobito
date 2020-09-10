@@ -34,7 +34,7 @@ public class MUsuario {
             }
         
         }catch(SQLException e){
-            System.out.println("Error al registrar usuario");
+            System.out.println("Error al agragar usuario");
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
             lp = null;
@@ -70,7 +70,7 @@ public class MUsuario {
             }
         
         }catch(SQLException e){
-            System.out.println("Error al registrar usuario");
+            System.out.println("Error al eliminar usuario");
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
             lp = null;
